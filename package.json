@@ -1,28 +1,64 @@
 {
   "name": "ezilitron",
+  "description": "Electron wrapper for ezil mining pool",
   "version": "0.1.0",
+  "main": "public/electron.js",
+  "homepage": "./",
   "private": true,
+  "author": {
+    "name": "Matt Graham",
+    "email": "m@ttgrahm.dev",
+    "url": "https://telegraham.dev"
+  },
+  "build": {
+    "appId": "dev.telegraham.ezilitron",
+    "productName": "Ezilitron",
+    "copyright": "Copyright © 2021 ${author}",
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "publish": []
+    }
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "@types/jest": "^26.0.15",
-    "@types/node": "^12.0.0",
-    "@types/react": "^16.9.53",
-    "@types/react-dom": "^16.9.8",
-    "cross-env": "^7.0.3",
+    "@types/node": "^14.14.22",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
     "electron-is-dev": "^1.2.0",
+    "electron-log": "^4.0.7",
+    "electron-updater": "^4.2.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.1",
-    "typescript": "^4.0.3",
-    "web-vitals": "^0.2.4"
+    "web-vitals": "^1.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "rescripts start",
+    "build": "rescripts build",
+    "test": "rescripts test",
+    "electron-dev": "concurrently \"cross-env BROWSER=none npm start\" \"wait-on http://localhost:3000 && electron .\"",
+    "postinstall": "electron-builder install-app-deps",
+    "preelectron-pack": "npm run build",
+    "electron-pack": "electron-builder -w",
+    "preelectron-ship": "npm --no-git-tag-version version patch && npm run build",
+    "electron-ship": "electron-builder -w -p always"
   },
   "eslintConfig": {
     "extends": [
@@ -30,22 +66,21 @@
       "react-app/jest"
     ]
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
+  "browserslist": [
+    "Electron >= 11.2.1"
+  ],
   "devDependencies": {
+    "@rescripts/cli": "^0.0.15",
+    "@rescripts/rescript-env": "^0.0.12",
     "concurrently": "^5.3.0",
+    "cross-env": "^7.0.3",
     "electron": "^11.2.1",
     "electron-builder": "^22.9.1",
+    "electron-devtools-installer": "^3.1.1",
+    "typescript": "^4.1.3",
     "wait-on": "^5.2.1"
-  }
+  },
+  "rescripts": [
+    "env"
+  ]
 }
