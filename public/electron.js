@@ -18,8 +18,8 @@ function createWindow() {
     height: 600,
     webPreferences: {
       nodeIntegration: true,
-      // webviewTag: true,
-      // webSecurity: false,
+      webviewTag: true,
+      webSecurity: false,
     },
   });
 
@@ -42,6 +42,7 @@ function createWindow() {
     //   // Open DevTools.
     //   installExtensions().then(() => mainWindow.webContents.openDevTools());
     // }
+    mainWindow.webContents.openDevTools();
   });
   mainWindow.on("window-all-closed", () => app.quit());
 }
