@@ -1,12 +1,12 @@
 import React from "react";
-import "./App.css";
-import WebDashboard from "./components/WebDashboard/WebDashboard.js";
+import { WebDashboard, TitleBar } from "./components";
 
 function App() {
   return (
-    <div className="App">
+    <>
+      <TitleBar />
       <WebDashboard />
-    </div>
+    </>
   );
 }
 

@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+
 import "./WebMenu.css";
 
 /**
@@ -6,7 +7,7 @@ import "./WebMenu.css";
  * The webview methods in the reference are all available on webviewRef.current
  * https://electronjs.org/docs/api/webview-tag
  */
-const WebDashboard = () => {
+export const WebDashboard = () => {
   const webviewRef = useRef(null);
 
   /**BEGIN HANDLERS**/
@@ -17,11 +18,7 @@ const WebDashboard = () => {
    */
   /**END HANDLERS**/
   const injectCss = (webview) => {
-    webview.insertCSS(
-      `::-webkit-scrollbar {
-           display: none;
-         }`
-    );
+    webview.insertCSS();
   };
   //run on component mount
   useEffect(() => {
@@ -44,5 +41,3 @@ const WebDashboard = () => {
     />
   );
 };
-
-export default WebDashboard;
