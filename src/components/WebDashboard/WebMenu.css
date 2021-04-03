@@ -1,7 +1,0 @@
-.fullsize {
-  width: 100%;
-  height: calc(100vh - 28px);
-}
-.stack {
-  position: absolute;
-}

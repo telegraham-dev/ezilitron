@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  Button,
   TitleBarContainer,
   Grow,
   TitleButtons,
@@ -7,16 +8,26 @@ import {
   MaxButton,
   CloseButton,
 } from "./TitleBar.styles";
+import {
+  faWindowMinimize,
+  faWindowMaximize,
+  faTimesCircle,
+} from "@fortawesome/free-regular-svg-icons";
 
 export const TitleBar: React.FC = () => {
   return (
     <TitleBarContainer>
-      <div>Ezilitron</div>
       <Grow />
       <TitleButtons>
-        <MinButton>-</MinButton>
-        <MaxButton>+</MaxButton>
-        <CloseButton>x</CloseButton>
+        <Button>
+          <MinButton icon={faWindowMinimize} />
+        </Button>
+        <Button>
+          <MaxButton icon={faWindowMaximize} />
+        </Button>
+        <Button>
+          <CloseButton icon={faTimesCircle} />
+        </Button>
       </TitleButtons>
     </TitleBarContainer>
   );
